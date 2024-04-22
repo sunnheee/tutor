@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="header::head-fragment('首页','index')">
+    <meta charset="UTF-8">
+    <title>商品信息展示页面</title>
+</head>
+<body>
+<div class="portal">
+<header th:replace="header::header-fragment"></header>
+<div class="content">
+    <div class="content-left">
+<!--        科目分类-->
+        <div class="left-search-item">
+            <h4>科目分类</h4>
+            <div role="tree" class="sub-tree">
+                <div class="tree-list">
+                       <div>
+                           <th:block th:each="category : ${categorys}">
+                               <div class="category" onclick="toggleSubCategory(this)">
+                                   <span class="category-text" th:text="${category.categoryName}"></span>>
+                               </div>
+                               <div class="sub-category" style="display: none;">
+                                   <th:block th:each="secCategory : ${category.sonList}">
+                                       <div th:text="${secCategory.categoryName}" th:onclick="'searchByCategoryId('+${secCategory.categoryId}+')'"></div>
+                                   </th:block>
+                               </div>
+                           </th:block>
+                       </div>
+                </div>
+            </div>
+        </div>
+        <div class="gradient-line"></div>
+<!--        热门标签-->
+        <div class="left-search-item">
+            <h4>热门标签</h4>
+            <div class="tree-list">
+                <th:block th:each="popularTag : ${popularTags}">
+                    <input type="hidden" id="tagId" th:value="${popularTag.subId}">
+                    <div class="tag" th:text="${popularTag.tagName}" th:onclick="'searchByCategoryId('+${popularTag.subId}+')'"></div>
+                </th:block>
+            </div>
+        </div>
+        <div class="gradient-line"></div>
+    </div>
+    <div class="content-right">
+        <div class="top-select-view">
+            <span id="tab1" class="tab select" onclick="select()">最新</span>
+            <span id="tab2" class="tab" onclick="select()">最热</span>
+            <span id="tab3" class="tab" onclick="select()">推荐</span>
+        </div>
+    <div id="tabContent">
+
+        <th:block th:unless="${#lists.isEmpty(latestList)}">
+        <div class="show-tutor">
+            <div th:each="tutor : ${latestList}" th:id="'latest_' + ${tutor.tutorId}" style="display:inline-block;margin-left: 5%;">
+                <a class="img-jump" th:href="'/detail?subId='+ ${tutor.tutorSubId}">
+            <img th:src="@{${tutor.tutorPhoto}}" th:alt="${tutor.tutorName}" style="height: 190px;width: 170px;object-fit: scale-down;">
+            <p class="tutor-name" th:text="${tutor.tutorName}"></p>
+            <p class="price" th:text="${tutor.priceLesson}+'元/课时'"></p>
+                </a>
+            </div>
+        </div>
+        </th:block>
+
+     <th:block th:unless="${#lists.isEmpty(hotList)}">
+     <div class="show-tutor-next">
+            <div th:each="tutor : ${hotList}" th:id="'hot_' + ${tutor.tutorId}" style="display:none">
+                <a class="img-jump" th:href="'/detail?subId='+ ${tutor.tutorSubId}">
+            <img th:src="@{${tutor.tutorPhoto}}" th:alt="${tutor.tutorName}" style="height: 190px;width: 170px;object-fit: scale-down;">
+             <p class="tutor-name" th:text="${tutor.tutorName}"></p>
+             <p class="price" th:text="${tutor.priceLesson}+'元/课时'"></p>
+                </a>
+            </div>
+        </div>
+        </th:block>
+
+        <th:block th:unless="${#lists.isEmpty(recommendedList)}">
+     <div class="show-tutor-next">
+            <div th:each="tutor : ${recommendedList}" th:id="'recommended_' + ${tutor.tutorId}" style="display:none">
+                <a class="img-jump" th:href="'/detail?subId='+ ${tutor.tutorSubId}">
+            <img th:src="@{${tutor.tutorPhoto}}" th:alt="${tutor.tutorName}" style="height: 190px;width: 170px;object-fit: scale-down;">
+            <p class="tutor-name" th:text="${tutor.tutorName}"></p>
+            <p class="price" th:text="${tutor.priceLesson}+'元/课时'"></p>
+                </a>
+            </div>
+    </div>
+    </th:block>
+
+</div>
+</div>
+</div>
+</div>
+</body>
+<script th:src="@{/jquery.min.js}"></script>
+<script th:src="@{/plugins/sweetalert/sweetalert.min.js}"></script>
+<script th:src="@{/js/headerConf.js}"></script>
+<script th:src="@{/js/index.js}"></script>
+</html>

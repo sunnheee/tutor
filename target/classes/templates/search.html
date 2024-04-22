@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="header::head-fragment('搜索','search')">
+    <meta charset="UTF-8">
+    <title>商品信息展示页面</title>
+</head>
+<body>
+<div class="portal">
+    <header th:replace="header::header-fragment"></header>
+    <div class="content">
+    <div class="content-left">
+            <div class="left-search-item">
+                <h4>科目分类</h4>
+                <div role="tree" class="sub-tree">
+                    <div class="tree-list">
+                        <div>
+                            <th:block th:each="category : ${categorys}">
+                                <div class="category" onclick="toggleSubCategory(this)">
+                                    <span class="category-text" th:text="${category.categoryName}"></span>>
+                                </div>
+                                <div class="sub-category" style="display: none;">
+                                    <th:block th:each="secCategory : ${category.sonList}">
+                                        <div th:text="${secCategory.categoryName}" th:onclick="'searchByCategoryId('+${secCategory.categoryId}+')'"></div>
+                                    </th:block>
+                                </div>
+                            </th:block>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="gradient-line"></div>
+            <div class="left-search-item">
+                <h4>热门标签</h4>
+                <div class="tree-list">
+                    <th:block th:each="popularTag : ${popularTags}">
+                        <input type="hidden" id="tagId" th:value="${popularTag.subId}">
+                        <div class="tag" th:text="${popularTag.tagName}" th:onclick="'searchByCategoryId('+${popularTag.subId}+')'"></div>
+                    </th:block>
+                </div>
+            </div>
+            <div class="gradient-line"></div>
+        </div>
+    <div class="content-right">
+    <div class="information-table">
+        <th:block th:unless="${#lists.isEmpty(pageResult.list)}">
+    <th:block th:each="list : ${pageResult.list}">
+        <div class="information">
+            <a class="img-jump" th:href="'/detail?subId='+ ${list.tutorSubId}">
+                <img th:src="@{${list.tutorPhoto}}" th:alt="${list.tutorName}" style="height: 190px;width: 170px;object-fit: scale-down;">
+                <p class="tutor-name" th:text="${list.tutorName}"></p>
+                <p class="price" th:text="${list.priceLesson}+'元/课时'"></p>
+            </a>
+        </div>
+    </th:block>
+            <div th:if="${categoryId != null && keyword == null}">
+                <div class="page-selector">
+        <th:block th:if="${pageResult.currentPage-2 >=1}"><a
+                class="numbers"
+                th:href="@{'/searchByCat?categoryId='+${categoryId} + '&page=' + ${pageResult.currentPage-2}}"
+                th:text="${pageResult.currentPage -2}">1</a>
+        </th:block>
+        <th:block th:if="${pageResult.currentPage-1 >=1}"><a
+                class="numbers"
+                th:href="@{'/searchByCat?categoryId='+${categoryId} + '&page=' + ${pageResult.currentPage-1}}"
+                th:text="${pageResult.currentPage -1}">1</a>
+        </th:block>
+        <a href="##" class="numbers current" th:text="${pageResult.currentPage}">1</a>
+        <th:block th:if="${pageResult.currentPage+1<=pageResult.totalPage}"><a
+                class="numbers"
+                th:href="@{'/searchByCat?categoryId='+${categoryId} + '&page=' + ${pageResult.currentPage+1}}"
+                th:text="${pageResult.currentPage +1}">1</a></th:block>
+        <th:block th:if="${pageResult.currentPage+2<=pageResult.totalPage}"><a
+                class="numbers"
+                th:href="@{'/searchByCat?categoryId='+${categoryId} + '&page=' + ${pageResult.currentPage+2}}"
+                th:text="${pageResult.currentPage +2}">1</a></th:block>
+             </div>
+            </div>
+            <div th:if="${keyword != null && categoryId == null}">
+                <div class="page-selector">
+                    <th:block th:if="${pageResult.currentPage-2 >=1}"><a
+                            class="numbers"
+                            th:href="@{'/searchByKeyword?keyword='+${keyword} + '&page=' + ${pageResult.currentPage-2}}"
+                            th:text="${pageResult.currentPage -2}">1</a>
+                    </th:block>
+                    <th:block th:if="${pageResult.currentPage-1 >=1}"><a
+                            class="numbers"
+                            th:href="@{'/searchByKeyword?keyword='+${keyword} + '&page=' + ${pageResult.currentPage-1}}"
+                            th:text="${pageResult.currentPage -1}">1</a>
+                    </th:block>
+                    <a href="##" class="numbers current" th:text="${pageResult.currentPage}">1</a>
+                    <th:block th:if="${pageResult.currentPage+1<=pageResult.totalPage}"><a
+                            class="numbers"
+                            th:href="@{'/searchByKeyword?keyword='+${keyword} + '&page=' + ${pageResult.currentPage+1}}"
+                            th:text="${pageResult.currentPage +1}">1</a></th:block>
+                    <th:block th:if="${pageResult.currentPage+2<=pageResult.totalPage}"><a
+                            class="numbers"
+                            th:href="@{'/searchByKeyword?keyword='+${keyword} + '&page=' + ${pageResult.currentPage+2}}"
+                            th:text="${pageResult.currentPage +2}">1</a></th:block>
+                </div>
+            </div>
+        </th:block>
+        </div>
+    </div>
+    </div>
+</div>
+</body>
+<script th:src="@{/jquery.min.js}"></script>
+<script th:src="@{/plugins/sweetalert/sweetalert.min.js}"></script>
+<script th:src="@{/js/headerConf.js}"></script>
+<script th:src="@{/js/search.js}"></script>
+</html>

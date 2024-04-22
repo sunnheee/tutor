@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<aside th:fragment="sidebar-fragment(path)" class="main-sidebar sidebar-dark-primary elevation-4">
+    <a th:href="@{/admin/index}" class="brand-link">
+        <span class="brand-text font-weight-light">家教管理</span>
+    </a>
+    <div class="sidebar">
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                data-accordion="false">
+                <li class="nav-header">Dashboard</li>
+                <li class="nav-item">
+                    <a th:href="@{/admin/index}" th:class="${path}=='index'?'nav-link active':'nav-link'">
+                        <img th:src="'/images/dashboard.png'" alt="" style="height: 19px;width: 20px;margin-right: 8px">
+                        <p>
+                            Dashboard
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{/admin/subs/edit}" th:class="${path}=='info-edit'?'nav-link active':'nav-link'">
+                        <img th:src="'/images/plus.png'" alt="" style="height: 19px;width: 20px;margin-right: 8px">
+                        <p>
+                            添加课程
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-header">首页配置</li>
+                <li class="nav-item">
+                    <a th:href="@{/admin/indexConfigs?configType=1}"
+                       th:class="${path}=='index_tutor_latest'?'nav-link active':'nav-link'">
+                        <img th:src="'/images/handup.png'" alt="" style="height: 19px;width: 20px;margin-right: 8px">
+                        <p>
+                            最新配置
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{/admin/indexConfigs?configType=2}"
+                       th:class="${path}=='index_tutor_hot'?'nav-link active':'nav-link'">
+                        <img th:src="'/images/handup.png'" alt="" style="height: 19px;width: 20px;margin-right: 8px">
+                        <p>
+                            最热配置
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{/admin/indexConfigs?configType=3}"
+                       th:class="${path}=='index_tutor_recommend'?'nav-link active':'nav-link'">
+                        <img th:src="'/images/handup.png'" alt="" style="height: 19px;width: 20px;margin-right: 8px">
+                        <p>
+                            推荐配置
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-header">管理模块</li>
+                <li class="nav-item">
+                    <a th:href="@{/admin/categories?parentId=0&categoryLevel=1&backParentId=0}"
+                       th:class="${path}=='category'?'nav-link active':'nav-link'">
+                        <img th:src="'/images/classification.png'" alt="" style="height: 19px;width: 20px;margin-right: 8px">
+                        <p>
+                            分类管理
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{/admin/tutors}"
+                       th:class="${path}=='category'?'nav-link active':'nav-link'">
+                        <img th:src="'/images/teacher.png'" alt="" style="height: 19px;width: 20px;margin-right: 8px">
+                        <p>
+                            教师管理
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{/admin/subs}" th:class="${path}=='subjects'?'nav-link active':'nav-link'">
+                        <img th:src="'/images/book.png'" alt="" style="height: 19px;width: 20px;margin-right: 8px">
+                        <p>
+                            教课管理
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{/admin/users}" th:class="${path}=='users'?'nav-link active':'nav-link'">
+                        <img th:src="'/images/users.png'" alt="" style="height: 19px;width: 20px;margin-right: 8px">
+                        <p>
+                            用户管理
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{/admin/comments}" th:class="${path}=='commonts'?'nav-link active':'nav-link'">
+                        <img th:src="'/images/comments.png'" alt="" style="height: 19px;width: 20px;margin-right: 8px">
+                        <p>
+                            评论管理
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-header">系统管理</li>
+                <li class="nav-item">
+                    <a th:href="@{/admin/profile}"
+                       th:class="${path}=='profile'?'nav-link active':'nav-link'">
+                        <img th:src="'/images/changepassword.png'" alt="" style="height: 19px;width: 20px;margin-right: 8px">
+                        <p>修改密码</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{/admin/logout}" class="nav-link">
+                        <img th:src="'/images/adminlogout.png'" alt="" style="height: 19px;width: 20px;margin-right: 8px">
+                        <p>安全退出</p>
+                    </a>
+                </li>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</aside>
+</html>

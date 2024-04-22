@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sh.sys.dao.TutorSubMapper">
+  <resultMap id="BaseResultMap" type="com.sh.sys.model.TutorSub">
+    <id column="tutor_sub_id" jdbcType="INTEGER" property="tutorSubId" />
+    <result column="sub_category_id" jdbcType="INTEGER" property="subCategoryId" />
+    <result column="sub_name" jdbcType="VARCHAR" property="subName" />
+    <result column="price_lesson" jdbcType="INTEGER" property="priceLesson" />
+    <result column="tutor_id" jdbcType="INTEGER" property="tutorId" />
+    <result column="tutor_name" jdbcType="VARCHAR" property="tutorName" />
+    <result column="tutor_photo" jdbcType="VARCHAR" property="tutorPhoto" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_admin_id" jdbcType="INTEGER" property="createAdminId" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="update_admin_id" jdbcType="INTEGER" property="updateAdminId" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="is_expire" jdbcType="INTEGER" property="isExpire" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    tutor_sub_id, sub_category_id, sub_name, price_lesson, tutor_id, tutor_name, tutor_photo, 
+    create_time, create_admin_id, update_time, update_admin_id, status, is_expire
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_tutor_sub
+    where tutor_sub_id = #{tutorSubId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sys_tutor_sub
+    where tutor_sub_id = #{tutorSubId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.sh.sys.model.TutorSub">
+    insert into sys_tutor_sub (tutor_sub_id, sub_category_id, sub_name, 
+      price_lesson, tutor_id, tutor_name, 
+      tutor_photo, create_time, create_admin_id, 
+      update_time, update_admin_id, status, 
+      is_expire)
+    values (#{tutorSubId,jdbcType=INTEGER}, #{subCategoryId,jdbcType=INTEGER}, #{subName,jdbcType=VARCHAR}, 
+      #{priceLesson,jdbcType=INTEGER}, #{tutorId,jdbcType=INTEGER}, #{tutorName,jdbcType=VARCHAR}, 
+      #{tutorPhoto,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{createAdminId,jdbcType=INTEGER}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{updateAdminId,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      #{isExpire,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sh.sys.model.TutorSub">
+    insert into sys_tutor_sub
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="tutorSubId != null">
+        tutor_sub_id,
+      </if>
+      <if test="subCategoryId != null">
+        sub_category_id,
+      </if>
+      <if test="subName != null">
+        sub_name,
+      </if>
+      <if test="priceLesson != null">
+        price_lesson,
+      </if>
+      <if test="tutorId != null">
+        tutor_id,
+      </if>
+      <if test="tutorName != null">
+        tutor_name,
+      </if>
+      <if test="tutorPhoto != null">
+        tutor_photo,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="createAdminId != null">
+        create_admin_id,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="updateAdminId != null">
+        update_admin_id,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="isExpire != null">
+        is_expire,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="tutorSubId != null">
+        #{tutorSubId,jdbcType=INTEGER},
+      </if>
+      <if test="subCategoryId != null">
+        #{subCategoryId,jdbcType=INTEGER},
+      </if>
+      <if test="subName != null">
+        #{subName,jdbcType=VARCHAR},
+      </if>
+      <if test="priceLesson != null">
+        #{priceLesson,jdbcType=INTEGER},
+      </if>
+      <if test="tutorId != null">
+        #{tutorId,jdbcType=INTEGER},
+      </if>
+      <if test="tutorName != null">
+        #{tutorName,jdbcType=VARCHAR},
+      </if>
+      <if test="tutorPhoto != null">
+        #{tutorPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createAdminId != null">
+        #{createAdminId,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateAdminId != null">
+        #{updateAdminId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="isExpire != null">
+        #{isExpire,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sh.sys.model.TutorSub">
+    update sys_tutor_sub
+    <set>
+      <if test="subCategoryId != null">
+        sub_category_id = #{subCategoryId,jdbcType=INTEGER},
+      </if>
+      <if test="subName != null">
+        sub_name = #{subName,jdbcType=VARCHAR},
+      </if>
+      <if test="priceLesson != null">
+        price_lesson = #{priceLesson,jdbcType=INTEGER},
+      </if>
+      <if test="tutorId != null">
+        tutor_id = #{tutorId,jdbcType=INTEGER},
+      </if>
+      <if test="tutorName != null">
+        tutor_name = #{tutorName,jdbcType=VARCHAR},
+      </if>
+      <if test="tutorPhoto != null">
+        tutor_photo = #{tutorPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createAdminId != null">
+        create_admin_id = #{createAdminId,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateAdminId != null">
+        update_admin_id = #{updateAdminId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="isExpire != null">
+        is_expire = #{isExpire,jdbcType=INTEGER},
+      </if>
+    </set>
+    where tutor_sub_id = #{tutorSubId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sh.sys.model.TutorSub">
+    update sys_tutor_sub
+    set sub_category_id = #{subCategoryId,jdbcType=INTEGER},
+      sub_name = #{subName,jdbcType=VARCHAR},
+      price_lesson = #{priceLesson,jdbcType=INTEGER},
+      tutor_id = #{tutorId,jdbcType=INTEGER},
+      tutor_name = #{tutorName,jdbcType=VARCHAR},
+      tutor_photo = #{tutorPhoto,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_admin_id = #{createAdminId,jdbcType=INTEGER},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_admin_id = #{updateAdminId,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      is_expire = #{isExpire,jdbcType=INTEGER}
+    where tutor_sub_id = #{tutorSubId,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectByIds" resultMap="BaseResultMap">
+    select * from sys_tutor_sub where tutor_sub_id in
+    (
+    <foreach collection="list" item="id" separator=",">
+      #{id}
+    </foreach>
+    ) and status=0
+  </select>
+
+  <select id="selectByIdsAndLimit" resultMap="BaseResultMap">
+    select * from sys_tutor_sub where tutor_sub_id in
+    (
+    <foreach collection="ids" item="id" separator=",">
+      #{id}
+    </foreach>
+    ) and status=0
+    limit #{offset},#{size}
+  </select>
+
+
+  <select id="selectByKeyword" resultMap="BaseResultMap">
+    select * from sys_tutor_sub where
+    <if test="keyword != null and keyword != ''">
+      (
+      sub_name like concat('%', #{keyword}, '%') or
+      tutor_name like concat('%', #{keyword}, '%')
+      )
+    </if>
+    and status=0
+    limit #{offset},#{size}
+  </select>
+
+
+  <update id="updateStatusByIds">
+    update sys_tutor_sub set status=#{status} where tutor_sub_id in(
+    <foreach collection="ids" item="id" separator=",">
+      #{id}
+    </foreach>
+    )
+  </update>
+</mapper>

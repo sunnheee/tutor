@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="header::head-fragment('详情页','detail')">
+</head>
+<body>
+<header th:replace="header::header-fragment"></header>
+<div class="content">
+<div class="detail">
+    <div class="detail-content-top">
+        <div class="infos-view">
+            <div class="infos">
+                <dis class="img-box">
+                    <img class="img-info" th:src="${vo.tutorImg}" alt="">
+                </dis>
+                <div class="info-box">
+                    <input type="hidden" id="phone" th:value="${vo.phone}">
+                    <input type="hidden" id="subId" th:value="${vo.tutorSubId}">
+                    <div class="info-state">
+                        <span class="state">信息状态</span>
+                        <th:block>
+                        <span th:if="${vo.state == 0}">有效</span>
+                        <span th:if="${vo.state == 1}">无效</span>
+                        </th:block>
+                    </div>
+                    <h1 class="info-name" th:text="${vo.tutorName}"></h1>
+                    <span>
+                        <span class="price" th:text="${vo.price} +'元/课时'"></span>
+                    </span>
+                    <div class="translators">
+                        <span>科目：</span>
+                        <span class="name" th:text="${vo.subject}"></span>
+                    </div>
+                    <div class="translators">
+                        <span>性别：</span>
+                        <span class="name" th:text="${vo.gender}"></span>
+                    </div>
+                    <div class="translators">
+                        <span>年龄：</span>
+                        <span class="name" th:text="${vo.age}"></span>
+                    </div>
+                    <div class="translators">
+                        <span>地区：</span>
+                        <span class="name" th:text="${vo.area}"></span>
+                    </div>
+                    <button class="buy-btn" onclick="getPhone()">
+                        <img class="buy-btn-img" th:src="'images/add.png'" alt="">
+                        <span>立即联系</span>
+                    </button>
+                </div>
+            </div>
+            <div class="info-count">
+                <div onclick="addWish()" class="count-item">
+                    <div class="count-img">
+                        <img class="img-icon" th:src="'images/wish.png'" alt="">
+                    </div>
+                    <div class="count-box">
+                        <div class="count-text-box">
+                            <span class="count-title">加入心愿单</span>
+                        </div>
+                        <div class="count-num-box">
+                            <span class="num-text" th:text="${vo.wishCount}"></span>
+                        </div>
+                    </div>
+                </div>
+                <div onclick="addCollection()" class="count-item">
+                    <div class="count-img">
+                        <img class="img-icon" th:src="'images/collection.png'" alt="">
+                    </div>
+                    <div class="count-box">
+                        <div class="count-text-box">
+                            <span class="count-title">收藏</span>
+                        </div>
+                        <div class="count-num-box">
+                            <span class="num-text" th:text="${vo.collectionCount}">0</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="count-item">
+                    <div class="count-img">
+                        <img class="img-icon" th:src="'images/share.png'" alt="">
+                    </div>
+                    <div class="count-box">
+                        <div class="count-text-box">
+                            <span class="count-title">分享</span>
+                        </div>
+                        <div class="count-num-box">
+                            <img class="share-icon" th:src="'images/shareWeChat.png'" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="detail-content-bottom">
+        <div class="bottom-content-view">
+            <div class="main-content">
+                <div class="main-tab">
+                    <span class="tab tab-select" onclick="showContent('comment')">评论</span>
+                    <span class="tab" onclick="showContent('intro')">简介</span>
+                </div>
+                <div class="intro  hide">
+                    <div class="intro-text" th:text="${vo.intro}">
+                        本人擅长教学。
+                    </div>
+                </div>
+                <div class="comment">
+                    <div class="title">发表新的评论</div>
+                    <div class="publish">
+                    <img class="user-avatar" th:if="${session.loginUser==null}" th:src="'images/personal.png'" alt="">
+                        <img class="user-avatar" th:if="${session.loginUser!=null}" th:src="${session.loginUser.avatarUrl}" alt="">
+                    <input type="text" id="comment" placeholder="说点什么..." class="content-input">
+                        <button class="send-btn" onclick="sendComment()">发送</button>
+                    </div>
+                    <div class="tab-view">
+                        <div class="count-text" th:text="'共有'+${count}+'条评论'"></div>
+                        <div class="tab-box">
+                            <span class="tab-box-item select">最新</span>
+                            <div class="line"></div>
+                            <span class="tab-box-item">热门</span>
+                        </div>
+                    </div>
+                    <div class="comments-list">
+                        <th:block th:unless="${#lists.isEmpty(comments)}">
+                            <th:block th:each="comment : ${comments}">
+                                <input type="hidden" id="commentId" th:value="${comment.commentId}">
+                        <div class="comments-item" >
+                            <div class="flex-item">
+                                <img class="user-avatar" th:src="${comment.userAvatar}" alt="">
+                                <div class="person">
+                                    <div class="comment-name" th:text="${comment.userName}"></div>
+                                    <div class="time" th:text="${#dates.format(comment.createTime,'yyyy-MM-dd HH:mm:ss')}"></div>
+                                </div>
+                                <div class="float-right">
+                                    <span onclick="like()">推荐</span>
+                                    <span class="num" th:text="${comment.likeNum}">1</span>
+                                </div>
+                            </div>
+                            <p class="comment-content" th:text="${comment.content}">666</p>
+                        </div>
+                            </th:block>
+                        </th:block>
+                        <div class="loading-container">没有更多了</div>
+                    </div>
+                </div>
+            </div>
+            <div class="recommend">
+
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+<script th:src="@{/jquery.min.js}"></script>
+<script th:src="@{/plugins/sweetalert/sweetalert.min.js}"></script>
+<script th:src="@{/js/headerConf.js}"></script>
+<script th:src="@{/js/detail.js}"></script>
+</html>

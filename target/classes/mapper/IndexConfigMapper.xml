@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sh.sys.dao.IndexConfigMapper">
+  <resultMap id="BaseResultMap" type="com.sh.sys.model.IndexConfig">
+    <id column="config_id" jdbcType="INTEGER" property="configId" />
+    <result column="config_name" jdbcType="VARCHAR" property="configName" />
+    <result column="config_type" jdbcType="TINYINT" property="configType" />
+    <result column="config_tutor_id" jdbcType="INTEGER" property="configTutorId" />
+    <result column="config_sub_id" jdbcType="INTEGER" property="configSubId" />
+    <result column="config_rank" jdbcType="INTEGER" property="configRank" />
+    <result column="redirect_url" jdbcType="VARCHAR" property="redirectUrl" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_admin_id" jdbcType="INTEGER" property="createAdminId" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="update_admin_id" jdbcType="INTEGER" property="updateAdminId" />
+    <result column="is_expire" jdbcType="TINYINT" property="isExpire" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    config_id, config_name, config_type, config_tutor_id, config_sub_id, config_rank, 
+    redirect_url, create_time, create_admin_id, update_time, update_admin_id, is_expire
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_index_config
+    where config_id = #{configId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sys_index_config
+    where config_id = #{configId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.sh.sys.model.IndexConfig">
+    insert into sys_index_config (config_id, config_name, config_type, 
+      config_tutor_id, config_sub_id, config_rank, 
+      redirect_url, create_time, create_admin_id, 
+      update_time, update_admin_id, is_expire
+      )
+    values (#{configId,jdbcType=INTEGER}, #{configName,jdbcType=VARCHAR}, #{configType,jdbcType=TINYINT}, 
+      #{configTutorId,jdbcType=INTEGER}, #{configSubId,jdbcType=INTEGER}, #{configRank,jdbcType=INTEGER}, 
+      #{redirectUrl,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{createAdminId,jdbcType=INTEGER}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{updateAdminId,jdbcType=INTEGER}, #{isExpire,jdbcType=TINYINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sh.sys.model.IndexConfig">
+    insert into sys_index_config
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="configId != null">
+        config_id,
+      </if>
+      <if test="configName != null">
+        config_name,
+      </if>
+      <if test="configType != null">
+        config_type,
+      </if>
+      <if test="configTutorId != null">
+        config_tutor_id,
+      </if>
+      <if test="configSubId != null">
+        config_sub_id,
+      </if>
+      <if test="configRank != null">
+        config_rank,
+      </if>
+      <if test="redirectUrl != null">
+        redirect_url,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="createAdminId != null">
+        create_admin_id,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="updateAdminId != null">
+        update_admin_id,
+      </if>
+      <if test="isExpire != null">
+        is_expire,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="configId != null">
+        #{configId,jdbcType=INTEGER},
+      </if>
+      <if test="configName != null">
+        #{configName,jdbcType=VARCHAR},
+      </if>
+      <if test="configType != null">
+        #{configType,jdbcType=TINYINT},
+      </if>
+      <if test="configTutorId != null">
+        #{configTutorId,jdbcType=INTEGER},
+      </if>
+      <if test="configSubId != null">
+        #{configSubId,jdbcType=INTEGER},
+      </if>
+      <if test="configRank != null">
+        #{configRank,jdbcType=INTEGER},
+      </if>
+      <if test="redirectUrl != null">
+        #{redirectUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createAdminId != null">
+        #{createAdminId,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateAdminId != null">
+        #{updateAdminId,jdbcType=INTEGER},
+      </if>
+      <if test="isExpire != null">
+        #{isExpire,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sh.sys.model.IndexConfig">
+    update sys_index_config
+    <set>
+      <if test="configName != null">
+        config_name = #{configName,jdbcType=VARCHAR},
+      </if>
+      <if test="configType != null">
+        config_type = #{configType,jdbcType=TINYINT},
+      </if>
+      <if test="configTutorId != null">
+        config_tutor_id = #{configTutorId,jdbcType=INTEGER},
+      </if>
+      <if test="configSubId != null">
+        config_sub_id = #{configSubId,jdbcType=INTEGER},
+      </if>
+      <if test="configRank != null">
+        config_rank = #{configRank,jdbcType=INTEGER},
+      </if>
+      <if test="redirectUrl != null">
+        redirect_url = #{redirectUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createAdminId != null">
+        create_admin_id = #{createAdminId,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateAdminId != null">
+        update_admin_id = #{updateAdminId,jdbcType=INTEGER},
+      </if>
+      <if test="isExpire != null">
+        is_expire = #{isExpire,jdbcType=TINYINT},
+      </if>
+    </set>
+    where config_id = #{configId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sh.sys.model.IndexConfig">
+    update sys_index_config
+    set config_name = #{configName,jdbcType=VARCHAR},
+      config_type = #{configType,jdbcType=TINYINT},
+      config_tutor_id = #{configTutorId,jdbcType=INTEGER},
+      config_sub_id = #{configSubId,jdbcType=INTEGER},
+      config_rank = #{configRank,jdbcType=INTEGER},
+      redirect_url = #{redirectUrl,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_admin_id = #{createAdminId,jdbcType=INTEGER},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_admin_id = #{updateAdminId,jdbcType=INTEGER},
+      is_expire = #{isExpire,jdbcType=TINYINT}
+    where config_id = #{configId,jdbcType=INTEGER}
+  </update>
+</mapper>

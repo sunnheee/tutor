@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<header th:replace="admin/header::header-fragment">
+</header>
+<style>
+    .ui-jqgrid tr.jqgrow td {
+        white-space: normal !important;
+        height: auto;
+        vertical-align: text-top;
+        padding-top: 2px;
+    }
+
+    a {
+        color: #1baeae;
+        text-decoration: none;
+        background-color: transparent;
+        -webkit-text-decoration-skip: objects;
+    }
+
+    a:hover {
+        color: white;
+        background-color: #1baeae;
+    }
+</style>
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+    <div th:replace="admin/header::header-nav"></div>
+    <div th:replace="admin/sidebar::sidebar-fragment(${path})"></div>
+    <div class="content-wrapper">
+        <div class="content-header">
+            <div class="container-fluid">
+            </div>
+        </div>
+        <div class="content">
+            <div class="container-fluid">
+                <div class="card card-primary card-outline">
+                    <div class="card-header">
+                        <h3 class="card-title">家教管理</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="grid-btn">
+                            <button class="btn btn-success" onclick="Approval()">
+                                <img th:src="'/images/admin/approval.png'" alt="" style="height: 18px;width: 18px">
+                                &nbsp;审批
+                            </button>
+                            <button class="btn btn-danger" onclick="deleteTutor()">
+                                <img th:src="'/images/admin/delete.png'" alt="" style="height: 18px;width: 18px">
+                                &nbsp;删除
+                            </button>
+                        </div>
+                        <table id="jqGrid" class="table table-bordered">
+                        </table>
+                        <div id="jqGridPager"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script th:src="@{/plugins/jquery/jquery.min.js}"></script>
+<script th:src="@{/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/js/admin/adminlte.min.js}"></script>
+<script th:src="@{/plugins/jqgrid-5.5.2/jquery.jqGrid.min.js}"></script>
+<script th:src="@{/plugins/jqgrid-5.5.2/grid.locale-cn.js}"></script>
+<script th:src="@{/plugins/sweetalert/sweetalert.min.js}"></script>
+<script th:src="@{/js/admin/public.js}"></script>
+<script th:src="@{/js/admin/adminTutor.js}"></script>
+</body>
+</html>

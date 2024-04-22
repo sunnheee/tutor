@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sh.sys.dao.TutorMapper">
+  <resultMap id="BaseResultMap" type="com.sh.sys.model.Tutor">
+    <id column="tutor_id" jdbcType="INTEGER" property="tutorId" />
+    <result column="tutor_name" jdbcType="VARCHAR" property="tutorName" />
+    <result column="tutor_gender" jdbcType="VARCHAR" property="tutorGender" />
+    <result column="tutor_photo" jdbcType="VARCHAR" property="tutorPhoto" />
+    <result column="tutor_age" jdbcType="INTEGER" property="tutorAge" />
+    <result column="tutor_phone" jdbcType="VARCHAR" property="tutorPhone" />
+    <result column="area" jdbcType="VARCHAR" property="area" />
+    <result column="effective" jdbcType="TINYINT" property="effective" />
+    <result column="brief_introduction" jdbcType="VARCHAR" property="briefIntroduction" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="is_expire" jdbcType="TINYINT" property="isExpire" />
+    <result column="lock" jdbcType="TINYINT" property="lock" />
+    <result column="create_admin_id" jdbcType="INTEGER" property="createAdminId" />
+    <result column="update_admin_id" jdbcType="INTEGER" property="updateAdminId" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    tutor_id, tutor_name, tutor_gender, tutor_photo, tutor_age, tutor_phone, area, effective, 
+    brief_introduction, create_time, update_time, is_expire, lock, create_admin_id, update_admin_id, 
+    user_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_tutor
+    where tutor_id = #{tutorId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sys_tutor
+    where tutor_id = #{tutorId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.sh.sys.model.Tutor">
+    insert into sys_tutor (tutor_id, tutor_name, tutor_gender, 
+      tutor_photo, tutor_age, tutor_phone, 
+      area, effective, brief_introduction, 
+      create_time, update_time, is_expire, 
+      lock, create_admin_id, update_admin_id, 
+      user_id)
+    values (#{tutorId,jdbcType=INTEGER}, #{tutorName,jdbcType=VARCHAR}, #{tutorGender,jdbcType=VARCHAR}, 
+      #{tutorPhoto,jdbcType=VARCHAR}, #{tutorAge,jdbcType=INTEGER}, #{tutorPhone,jdbcType=VARCHAR}, 
+      #{area,jdbcType=VARCHAR}, #{effective,jdbcType=TINYINT}, #{briefIntroduction,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{isExpire,jdbcType=TINYINT}, 
+      #{lock,jdbcType=TINYINT}, #{createAdminId,jdbcType=INTEGER}, #{updateAdminId,jdbcType=INTEGER}, 
+      #{userId,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sh.sys.model.Tutor">
+    insert into sys_tutor
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="tutorId != null">
+        tutor_id,
+      </if>
+      <if test="tutorName != null">
+        tutor_name,
+      </if>
+      <if test="tutorGender != null">
+        tutor_gender,
+      </if>
+      <if test="tutorPhoto != null">
+        tutor_photo,
+      </if>
+      <if test="tutorAge != null">
+        tutor_age,
+      </if>
+      <if test="tutorPhone != null">
+        tutor_phone,
+      </if>
+      <if test="area != null">
+        area,
+      </if>
+      <if test="effective != null">
+        effective,
+      </if>
+      <if test="briefIntroduction != null">
+        brief_introduction,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="isExpire != null">
+        is_expire,
+      </if>
+      <if test="lock != null">
+        lock,
+      </if>
+      <if test="createAdminId != null">
+        create_admin_id,
+      </if>
+      <if test="updateAdminId != null">
+        update_admin_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="tutorId != null">
+        #{tutorId,jdbcType=INTEGER},
+      </if>
+      <if test="tutorName != null">
+        #{tutorName,jdbcType=VARCHAR},
+      </if>
+      <if test="tutorGender != null">
+        #{tutorGender,jdbcType=VARCHAR},
+      </if>
+      <if test="tutorPhoto != null">
+        #{tutorPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="tutorAge != null">
+        #{tutorAge,jdbcType=INTEGER},
+      </if>
+      <if test="tutorPhone != null">
+        #{tutorPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null">
+        #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="effective != null">
+        #{effective,jdbcType=TINYINT},
+      </if>
+      <if test="briefIntroduction != null">
+        #{briefIntroduction,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isExpire != null">
+        #{isExpire,jdbcType=TINYINT},
+      </if>
+      <if test="lock != null">
+        #{lock,jdbcType=TINYINT},
+      </if>
+      <if test="createAdminId != null">
+        #{createAdminId,jdbcType=INTEGER},
+      </if>
+      <if test="updateAdminId != null">
+        #{updateAdminId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sh.sys.model.Tutor">
+    update sys_tutor
+    <set>
+      <if test="tutorName != null">
+        tutor_name = #{tutorName,jdbcType=VARCHAR},
+      </if>
+      <if test="tutorGender != null">
+        tutor_gender = #{tutorGender,jdbcType=VARCHAR},
+      </if>
+      <if test="tutorPhoto != null">
+        tutor_photo = #{tutorPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="tutorAge != null">
+        tutor_age = #{tutorAge,jdbcType=INTEGER},
+      </if>
+      <if test="tutorPhone != null">
+        tutor_phone = #{tutorPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null">
+        area = #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="effective != null">
+        effective = #{effective,jdbcType=TINYINT},
+      </if>
+      <if test="briefIntroduction != null">
+        brief_introduction = #{briefIntroduction,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isExpire != null">
+        is_expire = #{isExpire,jdbcType=TINYINT},
+      </if>
+      <if test="lock != null">
+        lock = #{lock,jdbcType=TINYINT},
+      </if>
+      <if test="createAdminId != null">
+        create_admin_id = #{createAdminId,jdbcType=INTEGER},
+      </if>
+      <if test="updateAdminId != null">
+        update_admin_id = #{updateAdminId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where tutor_id = #{tutorId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sh.sys.model.Tutor">
+    update sys_tutor
+    set tutor_name = #{tutorName,jdbcType=VARCHAR},
+      tutor_gender = #{tutorGender,jdbcType=VARCHAR},
+      tutor_photo = #{tutorPhoto,jdbcType=VARCHAR},
+      tutor_age = #{tutorAge,jdbcType=INTEGER},
+      tutor_phone = #{tutorPhone,jdbcType=VARCHAR},
+      area = #{area,jdbcType=VARCHAR},
+      effective = #{effective,jdbcType=TINYINT},
+      brief_introduction = #{briefIntroduction,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      is_expire = #{isExpire,jdbcType=TINYINT},
+      lock = #{lock,jdbcType=TINYINT},
+      create_admin_id = #{createAdminId,jdbcType=INTEGER},
+      update_admin_id = #{updateAdminId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=BIGINT}
+    where tutor_id = #{tutorId,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectByIds" resultMap="BaseResultMap">
+    select * from sys_tutor where tutor_id in
+    (
+    <foreach collection="list" item="id" separator=",">
+      #{id}
+    </foreach>
+    )
+  </select>
+</mapper>

@@ -1,0 +1,102 @@
+body{
+    width: 1920px;
+    height: 1080px;
+}
+.u-i-e-content {
+    display: flex;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+.u-i-e-content-left {
+    float: left;
+    width: 20%;
+    padding-right: 5%;
+}
+.u-i-e-content-right {
+    flex: 1;
+}
+.list-title {
+    border-bottom-color: rgb(206,220,228);
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    margin-bottom: 8px;
+    font-size: 20px;
+    color: black;
+    font-weight: 700;
+}
+.edit-view {
+    width: 600px;
+    height: 450px;
+}
+.flex-view {
+    display: flex;
+}
+.item {
+    margin-top: 24px;
+    margin-bottom: 24px;
+    justify-content: space-between;
+    align-items: center;
+}
+.label {
+    width: 100px;
+    height: 25px;
+}
+.right-box {
+    flex: 1;
+}
+.avatar-pic {
+    width: 80px;
+    height: 80px;
+    padding-right: 15px;
+}
+.change-tips{
+    display: block;
+}
+.tip {
+    color: rgb(111,111,111);
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    font-size: 12px;
+}
+.change-avatar {
+    width: 100px;
+}
+
+.input-dom {
+    background-color: rgb(248, 250, 251);
+    color: rgb(0, 0, 0);
+    border: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 380px;
+    height: 40px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.intro {
+    background-color: rgb(248, 250, 251);
+    color: rgb(0, 0, 0);
+    border: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 480px;
+    height: 40px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.save {
+    background-color: rgb(70, 132, 226);
+    border-style: none;
+    border-radius: 30px;
+    width: 100px;
+    height: 30px;
+    font-size: 14px;
+    color: white;
+    margin-left: 100px;
+    cursor: pointer;
+}
+.upload-btn {
+    border-style: none;
+    background-color: white;
+    font-size: 18px;
+    color: rgb(70, 132, 226);
+    margin-bottom: 15px;
+}

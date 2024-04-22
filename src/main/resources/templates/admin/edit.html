@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<header th:replace="admin/header::header-fragment"></header>
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+    <div th:replace="admin/header::header-nav"></div>
+    <div th:replace="admin/sidebar::sidebar-fragment(${path})"></div>
+    <div class="content-wrapper">
+        <div class="content-header">
+            <div class="container-fluid">
+            </div>
+        </div>
+        <div class="content">
+            <div class="container-fluid">
+                <div class="card card-primary card-outline">
+                    <div class="card-header">
+                        <h3 class="card-title">课程信息编辑</h3>
+                    </div>
+                    <div class="card-body">
+                        <form id="subForm" onsubmit="return false;">
+                            <div class="form-group" style="display:flex;">
+                                <label class="control-label">请选择分类:&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                <select class="form-control col-sm-3" id="levelOne"
+                                        data-placeholder="请选择分类...">
+                                    <th:block th:unless="${null == firstLevelCategories}">
+                                        <th:block th:each="c : ${firstLevelCategories}">
+                                            <option th:value="${c.categoryId}" th:text="${c.subName}"
+                                                    th:selected="${null !=firstLevelCategoryId and firstLevelCategoryId==c.categoryId} ?true:false">
+                                                >
+                                            </option>
+                                        </th:block>
+                                    </th:block>
+                                </select>&nbsp;
+                                <select class="form-control col-sm-3"
+                                        id="levelTwo"
+                                        data-placeholder="请选择分类...">
+                                    <th:block th:unless="${null == secondLevelCategories}">
+                                        <th:block th:each="c : ${secondLevelCategories}">
+                                            <option th:value="${c.categoryId}" th:text="${c.subName}"
+                                                    th:selected="${null !=secondLevelCategoryId and secondLevelCategoryId==c.categoryId} ?true:false">
+                                                >
+                                            </option>
+                                        </th:block>
+                                    </th:block>
+                                </select>&nbsp;
+                            </div>
+                            <div class="form-group" style="display:flex;">
+                                <input type="hidden" id="subId" name="subId"
+                                       th:value="${sub!=null and sub.tutorSubId!=null }?${sub.tutorSubId}: 0">
+                                <label class="control-label" style="padding-top: 10px">科目名:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                <input type="text" class="form-control col-sm-4" id="subName" name="subName"
+                                       placeholder="*请输入科目名称"
+                                       th:value="${sub!=null and sub.subName!=null }?${sub.subName}: ''"
+                                       required="true">
+                                &nbsp;&nbsp;
+                            </div>
+                            <div class="form-group" style="display:flex;">
+                                <label class="control-label" style="padding-top: 10px">课程售价:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                <input type="number" class="form-control col-sm-4" id="priceLesson"
+                                       name="priceLesson"
+                                       placeholder="*请输入课程价格"
+                                       th:value="${sub!=null and sub.priceLesson!=null }?${sub.priceLesson}: 1"
+                                       required="true">
+                                &nbsp;&nbsp;
+                            </div>
+                            <div class="form-group" style="display: flex">
+                                <label class="control-label" style="padding-top: 10px">教师ID:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                <input type="text" class="form-control col-sm-4" id="tutorId" name="tutorId"
+                                       placeholder="*请输入教师ID"
+                                       th:value="${sub!=null and sub.tutorId!=null }?${sub.tutorId}: ''"
+                                       required="true">
+                                &nbsp;&nbsp;
+                                <label class="control-label" style="padding-top: 10px">教师名称:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                <input type="text" class="form-control col-sm-4" id="tutorName" name="tutorName"
+                                       placeholder="*请输入教师名称"
+                                       th:value="${sub!=null and sub.tutorName!=null }?${sub.tutorName}: ''"
+                                       required="true">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">上架状态:&nbsp;</label>
+                                <input name="subSellStatus" type="radio" id="subSellStatusTrue" checked=true
+                                       th:checked="${null==sub||(null !=sub and null !=sub.status and sub.status==0)} ?true:false"
+                                       value="0"/>&nbsp;上架&nbsp;
+                                <input name="subSellStatus" type="radio" id="subSellStatusFalse" value="1"
+                                       th:checked="${null !=sub and null !=sub.status and sub.status==1} ?true:false"/>&nbsp;下架&nbsp;
+                            </div>
+                            <div class="form-group">
+                                <div class="form-group">
+                                    <div class="col-sm-4">
+                                        <th:block th:if="${null == sub}">
+                                            <img id="subCoverImg" src="/images/admin/img-upload.png"
+                                                 style="height: 64px;width: 64px;">
+                                        </th:block>
+                                        <th:block th:unless="${null == sub}">
+                                            <img id="subCoverImg" th:src="${sub.tutorPhoto}"
+                                                 style="width:160px ;height: 160px;display:block;object-fit: scale-down;">
+                                        </th:block>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="form-group">
+                                    <div class="col-sm-4">
+                                        <button class="btn btn-info" style="margin-bottom: 5px;"
+                                                id="uploadSubCoverImg">
+                                            <img th:src="'/images/admin/upload.png'" alt="" style="height: 18px;width: 18px">
+                                            &nbsp;上传主图
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                &nbsp;<button class="btn btn-info float-right" style="margin-left: 5px;"
+                                              id="saveButton">保存
+                            </button>&nbsp;
+                                &nbsp;<button class="btn btn-secondary float-right" style="margin-left: 5px;"
+                                              id="cancelButton">返回列表
+                            </button>&nbsp;
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script th:src="@{/plugins/jquery/jquery.min.js}"></script>
+<script th:src="@{/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/js/admin/adminlte.min.js}"></script>
+<script th:src="@{/plugins/sweetalert/sweetalert.min.js}"></script>
+<script th:src="@{/plugins/ajaxupload/ajaxupload.js}"></script>
+<script th:src="@{/js/admin/public.js}"></script>
+<script th:src="@{/js/admin/edit.js}"></script>
+</body>
+</html>

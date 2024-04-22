@@ -1,0 +1,105 @@
+.sider-box {
+    border-color: rgb(206,220,228);
+    border-style: solid;
+    border-width: 1px;
+}
+.info-box{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.info-box-item1{
+    width: 100px;
+}
+.info-box-item2{
+    flex: 1;
+}
+.user-avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    padding-right: 15px;
+}
+.user-name {
+    font-size: 18px;
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    color: rgb(21, 40, 68);
+    margin-bottom: 10px;
+}
+.user-score {
+    font-size: 14px;
+    color: rgb(111,111,111);
+}
+.counts-view {
+    padding: 18px;
+}
+.counts {
+    margin-top: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.collect-box {
+    cursor: pointer;
+    width: 95px;
+}
+.spilt-line{
+    width: 1px;
+    height: 20px;
+    background-color: #9be7ff;
+}
+.wish-box{
+    flex: 1;
+    cursor: pointer;
+}
+.text{
+    text-align: center;
+    color: rgb(111,111,111);
+    font-size: 15px
+}
+.num{
+    text-align: center;
+    color: black;
+    font-size: 15px;
+}
+.setting-box {
+    border-top-color: rgb(206,220,228);
+    border-top-style: solid;
+    border-top-width: 1px;
+    padding: 16px;
+}
+.title {
+    font-size: 15px;
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    color: rgb(21, 40, 68);
+    margin-top: 0px;
+}
+.setting-list {
+    padding-left: 13px;
+}
+.setting-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom-color: rgb(206,220,228);
+    border-bottom-style: dashed;
+    border-bottom-width: 1px;
+    height: 45px;
+    width: 180px;
+    cursor: pointer;
+}
+.setting-icon {
+    height: 24px;
+    width: 24px;
+    margin-right: 8px;
+}
+.setting-text {
+    flex: 1;
+}
+.sider-jump {
+    text-decoration: none;
+    color: black;
+}

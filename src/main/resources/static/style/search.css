@@ -1,0 +1,97 @@
+body{
+    background-color: rgb(255, 255, 255);
+    color: rgb(60, 60, 60);
+}
+h4{
+    font-family: Avenir, Helvetica, Arial, sans-serif
+}
+.tab {
+    cursor: pointer;
+    font-size: 17px;
+    color: rgb(153,153,153);
+}
+.tab.select {
+    font-size: 20px;
+    color: black;
+    text-decoration-line: underline;
+    text-decoration-color: #59cfff;
+    text-decoration-style: solid;
+}
+.content{
+    display: flex;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+.content-left {
+    float: left;
+    width: 20%;
+    padding-right: 5%;
+}
+.content-right{
+    flex: 1;
+}
+.show-tutor{
+    padding-top: 30px;
+    cursor: pointer;
+}
+.show-tutor-next{
+    cursor: pointer;
+}
+.tutor-name{
+    font-size: 20px;
+}
+.price{
+    font-size: 15px;
+}
+.gradient-line{
+    border: none;
+    height: 1px;
+    background: linear-gradient(to right,#575757,#65CBF7,#2476f7);
+    margin-top: 10px;
+}
+.category{
+    display: block;
+    cursor: pointer;
+    color: #1dbdf7;
+    /*padding-left: 10%;*/
+    margin-left: 10%;
+    margin-top: 5px;
+}
+.sub-category {
+    cursor: pointer;
+    color: #1dbdf7;
+    margin-left: 20%;
+    margin-top: 3px;
+    display: none;
+}
+.category:hover {
+    filter: grayscale(100%);
+}
+.highlight {
+    background-color: lightblue;
+}
+.category-text {
+    padding: 2px; /* 添加一些内边距以增加可读性 */
+}
+.tag {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 50px; /* 使用border-radius将tag变为椭圆形 */
+    background-color: white;
+    border: 1px solid #9acbf7; /* 添加黑色边框 */
+    transition: background-color 0.3s, border-color 0.3s; /* 添加过渡效果 */
+    cursor: pointer;
+}
+.information {
+    display: inline-block;
+    margin-left: 5%;
+}
+.page-selector {
+    height: 30px;
+    padding: 15px 0;
+    text-align: center;
+}
+.img-jump {
+    text-decoration: none;
+    color: black;
+}

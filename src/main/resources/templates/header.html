@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head-fragment(title,path)">
+    <meta charset="UTF-8">
+    <title>header</title>
+    <link rel="stylesheet" th:href="@{/style/header.css}">
+    <link rel="stylesheet" th:href="@{'/style/'+${path}+'.css'}">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
+</head>
+<header id="header" th:fragment="header-fragment">
+    <div class="header-view">
+        <div class="logo" id="logo"></div>
+        <div class="search-entry">
+    <input type="text" name="query" id="query" class="search-input" placeholder="输入关键词">
+    <input class="search-button" type="submit" onclick="searchByKeyword()" value="搜索">
+        </div>
+        <div class="right-view">
+            <a class="admin-entrance" th:href="@{/admin/loginView}">后台入口</a>
+            <th:block th:if="${session.loginUser == null || session.loginUser.tutorFlag == 0}">
+            <a class="settle-in" th:href="@{/user-center/joinTutor}">家教入驻</a>
+            </th:block>
+            <div th:if="${session.loginUser == null}">
+            <a class="login-btn" th:href="@{'/loginView'}">登录</a>
+            </div>
+        <div th:if="${session.loginUser != null}">
+            <th:block th:unless="${session.loginUser.avatarUrl == null}">
+            <a th:href="@{'/user-center/userInfoEdit'}">
+                <div class="personal">
+                <img class="personal-icon" th:src="${session.loginUser.avatarUrl}" alt=""/></div>
+            </a>
+            </th:block>
+            <th:block th:if="${session.loginUser.avatarUrl == null}">
+                <a th:href="@{'/user-center/userInfoEdit'}">
+                <div class="personal">
+                    <img class="personal-icon" th:src="'/images/personal.png'" alt=""/></div>
+                </a>
+            </th:block>
+        </div>
+        </div>
+    </div>
+    <div class="gradient-line"></div>
+</header>
+<script src="jquery.min.js"></script>
+<script th:src="@{/js/headerConf.js}"></script>
+</html>

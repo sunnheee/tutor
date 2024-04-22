@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="header::head-fragment('账号安全','accountSecurity')">
+    <meta charset="UTF-8">
+    <title>账号安全</title>
+</head>
+<body>
+<header th:replace="header::header-fragment"></header>
+<div class="a-s-content">
+    <div class="a-s-content-left">
+        <div th:replace="sider::sider-fragment('侧边栏')"></div>
+    </div>
+    <div class="a-s-content-right">
+        <div class="content-list">
+            <div class="list-title">账号安全</div>
+            <input type="hidden" id="userId" th:value="${session.loginUser.userId}">
+            <div class="list-content">
+                <div class="edit-view">
+                    <div class="item flex-view">
+                        <div class="label">账号安全等级</div>
+                        <div class="right-box">
+                            <th:block th:if="${session.loginUser.phone == null}">
+                                <div class="safe-text">高风险</div>
+                                <progress max="3" class="safe-line" value="1" data-v-11d585de=""></progress>
+                            </th:block>
+                            <th:block th:if="${session.loginUser.phone != null and session.loginUser.password.length() < 10}">
+                                <div class="safe-text">低风险</div>
+                                <progress max="3" class="safe-line" value="2" data-v-11d585de=""></progress>
+                            </th:block>
+                            <th:block th:if="${session.loginUser.phone != null and session.loginUser.password.length() >= 10}">
+                                <div class="safe-text">安全</div>
+                                <progress max="3" class="safe-line" value="3" data-v-11d585de=""></progress>
+                            </th:block>
+                        </div>
+                    </div>
+                    <div class="item flex-view">
+                        <div class="label">修改绑定手机</div>
+                        <div class="right-box">
+                            <input type="text" id="phone" placeholder="请输入手机号" maxlength="" class="phone-num">
+                            <button class="phone-change-btn" onclick="changePhone()">修改</button>
+                        </div>
+                    </div>
+                    <div class="item flex-view">
+                        <div class="label">原密码</div>
+                        <div class="right-box">
+                            <span class="pass-box">
+                            <input type="password" id="oldPassword" placeholder="请输入原密码" maxlength="" class="input-pass">
+                                <span id="togglePassword" class="fa fa-eye-slash" onclick="togglePassword()"></span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="item flex-view">
+                        <div class="label">新密码</div>
+                        <div class="right-box">
+                            <span class="pass-box">
+                            <input type="password" id="newPassword" placeholder="请输入修改后的密码" maxlength="" class="input-pass">
+                                <span id="togglePassword-new" class="fa fa-eye-slash" onclick="togglePasswordNew()"></span>
+                            </span>
+                        </div>
+                    </div>
+                    <button class="save" onclick="changePassword()">修改密码</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script th:src="@{/jquery.min.js}"></script>
+<script th:src="@{/plugins/sweetalert/sweetalert.min.js}"></script>
+<script th:src="@{/js/accountSecurity.js}"></script>
+<script th:src="@{/js/headerConf.js}"></script>
+<script></script>
+</html>

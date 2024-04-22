@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="sider-fragment(title)">
+    <meta charset="UTF-8">
+    <title>商品信息展示页面</title>
+    <link rel="stylesheet" th:href="@{/style/sider.css}">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
+</head>
+<div id="sider" th:fragment="sider-fragment">
+    <div class="sider-box">
+        <div class="info-box">
+            <img class="user-avatar info-box-item1" th:src="${session.loginUser.avatarUrl}" style="height: 40px;width: 40px">
+            <div class="name-box info-box-item2">
+                <h2 class="user-name" th:if="${session.loginUser.nickname!=null}" th:text="${session.loginUser.nickname}"></h2>
+                <h2 class="user-name" th:if="${session.loginUser.nickname==null}" th:text="${session.loginUser.loginPhone}"></h2>
+                <span class="user-score" th:text="${session.loginUser.score}+'积分'"></span>
+            </div>
+        </div>
+        <div class="counts-view">
+            <div class="counts">
+                <div class="collect-box">
+                    <a class="sider-jump" th:href="@{'/collectThing'}">
+                    <div class="text">收藏</div>
+                    <div class="num" th:text="${session.userCollectNum}"></div>
+                    </a>
+                </div>
+                <div class="spilt-line"></div>
+                <div class="wish-box">
+                    <a class="sider-jump" th:href="@{'/wish'}">
+                        <div class="text">心愿单</div>
+                        <div class="num" th:text="${session.userWishNum}"></div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="setting-box">
+            <h2 class="title">个人设置</h2>
+            <div class="setting-list">
+                <th:block th:if="${session.loginUser.tutorFlag == 0}">
+                <a class="sider-jump" th:href="@{'/user-center/joinTutor'}">
+                <div class="setting-item">
+                    <img class="setting-icon" th:src="@{/images/join.png}">
+                    <span class="setting-text">家教入驻</span>
+                </div>
+                </a>
+                </th:block>
+                <th:block th:if="${session.loginUser.tutorFlag == 1}">
+                    <a class="sider-jump" th:href="@{'/user-center/addSubject'}">
+                        <div class="setting-item">
+                            <img class="setting-icon" th:src="@{/images/join.png}">
+                            <span class="setting-text">添加课程</span>
+                        </div>
+                    </a>
+                    <a class="sider-jump" th:href="@{'/user-center/mineSubjects'}">
+                        <div class="setting-item">
+                            <img class="setting-icon" th:src="@{/images/join.png}">
+                            <span class="setting-text">我的课程</span>
+                        </div>
+                    </a>
+                </th:block>
+                <a class="sider-jump" th:href="@{'/user-center/userInfoEdit'}">
+                <div class="setting-item">
+                    <img class="setting-icon" th:src="@{/images/userEdit.png}">
+                    <span class="setting-text">编辑资料</span>
+                </div>
+                </a>
+                <a class="sider-jump" th:href="@{'/user-center/accountSecurity'}">
+                <div class="setting-item">
+                    <img class="setting-icon" th:src="@{/images/security.png}">
+                    <span class="setting-text">账号安全</span>
+                </div>
+                </a>
+                <a class="sider-jump" th:href="@{'/loginOut'}">
+                    <div class="setting-item">
+                        <img class="setting-icon" th:src="@{/images/Logout.png}">
+                        <span class="setting-text">退出登录</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+</script>
+</html>

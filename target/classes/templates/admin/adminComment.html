@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<header th:replace="admin/header::header-fragment">
+</header>
+<style>
+    .ui-jqgrid tr.jqgrow td {
+        white-space: normal !important;
+        height: auto;
+        vertical-align: text-top;
+        padding-top: 2px;
+    }
+</style>
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+    <div th:replace="admin/header::header-nav"></div>
+    <div th:replace="admin/sidebar::sidebar-fragment(${path})"></div>
+    <div class="content-wrapper">
+        <div class="content-header">
+            <div class="container-fluid">
+            </div>
+        </div>
+        <div class="content">
+            <div class="container-fluid">
+                <div class="card card-primary card-outline">
+                    <div class="card-header">
+                        <h3 class="card-title">评论管理</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="grid-btn">
+                            <button class="btn btn-info" onclick="commentAdd()">
+                                <img th:src="'/images/admin/add.png'" alt="" style="height: 18px;width: 18px">
+                                &nbsp;模拟新增
+                            </button>
+                            <button class="btn btn-danger" onclick="deleteComment()">
+                                <img th:src="'/images/admin/delete.png'" alt="" style="height: 18px;width: 18px">
+                                &nbsp;批量删除
+                            </button>
+                        </div>
+                        <br>
+                        <table id="jqGrid" class="table table-bordered">
+                        </table>
+                        <div id="jqGridPager"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content">
+            <div class="modal fade" id="commentModal" tabindex="-1" role="dialog" aria-labelledby="commentModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                    aria-hidden="true">&times;</span></button>
+                            <h6 class="modal-title" id="commentModalLabel">Modal</h6>
+                        </div>
+                        <div class="modal-body">
+                            <form id="commentForm">
+                                <div class="form-group">
+                                    <div class="alert alert-danger" id="edit-error-msg" style="display: none;">
+                                        错误信息展示栏。
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="content" class="control-label">评论内容:</label>
+                                    <input type="text" class="form-control" id="content" name="content"
+                                           placeholder="请输入评论内容" required="true">
+                                </div>
+                                <div class="form-group">
+                                    <label for="subId" class="control-label">课程ID:</label>
+                                    <input type="number" class="form-control" id="subId" name="subId"
+                                           placeholder="请输入评论所属课程ID" required="true">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                            <button type="button" class="btn btn-primary" id="saveButton">确认</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script th:src="@{/plugins/jquery/jquery.min.js}"></script>
+<script th:src="@{/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/js/admin/adminlte.min.js}"></script>
+<script th:src="@{/plugins/jqgrid-5.5.2/jquery.jqGrid.min.js}"></script>
+<script th:src="@{/plugins/jqgrid-5.5.2/grid.locale-cn.js}"></script>
+<script th:src="@{/plugins/sweetalert/sweetalert.min.js}"></script>
+<script th:src="@{/js/admin/public.js}"></script>
+<script th:src="@{/js/admin/adminComment.js}"></script>
+</body>
+</html>

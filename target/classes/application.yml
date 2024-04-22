@@ -1,0 +1,24 @@
+server:
+  port: 8080
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/tutor_test?serverTimezone=Asia/Shanghai&characterEncoding=UTF-8&useSSL=false
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: root
+    type: com.alibaba.druid.pool.DruidDataSource
+  servlet:
+    multipart:
+      max-request-size: 4MB
+      max-file-size: 4MB
+mybatis:
+  mapper-locations: classpath:/mapper/*.xml
+  type-aliases-package: com.sh.sys.model
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+qiniu:
+  key: upFfu4LznYLV4n1uAxcM81CaFx2E66h9a1ODXSd1
+  sk: i06O_ZQT5g85UmILtoAWA923QElMp9TkdzFYfzE6
+  bucket: sh-space

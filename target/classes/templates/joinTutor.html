@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="header::head-fragment('加入教师','joinTutor')">
+
+    <meta charset="UTF-8">
+    <title>用户信息编辑</title>
+</head>
+<body>
+<header th:replace="header::header-fragment"></header>
+<div class="j-t-content">
+    <div class="j-t-content-left">
+        <div th:replace="sider::sider-fragment('侧边栏')"></div>
+    </div>
+    <div class="j-t-content-right">
+        <div class="content-list">
+            <div class="list-title">家教入驻</div>
+            <div class="list-content">
+                <div class="edit-view">
+                    <div class="item flex-view">
+                        <div class="label">生活照</div>
+                        <div class="right-box avatar-box flex-view">
+                                <img class="avatar-pic" id="photoUrl" src="">
+                            <div class="change-tips">
+                        <span class="change-avatar">
+                            <button id="uploadPhoto" class="upload-btn">
+                                点击上传照片</button>
+                        </span>
+                                <div class="tip">图片格式支持 GIF、PNG、JPEG，尺寸不小于 200 PX，小于 4 MB</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item flex-view">
+                        <div class="label">姓名</div>
+                        <div class="right-box">
+                                <input type="text" id="name" placeholder="请输入您的姓名" maxlength="20" class="input-dom">
+                            <p class="tip">支持中英文，长度不能超过 20 个字符</p>
+                        </div>
+                    </div>
+                    <div class="item flex-view">
+                        <div class="label">性别</div>
+                        <div class="right-box">
+                            <input type="text" id="gender" placeholder="请输入您的性别" maxlength="10" class="input-dom">
+                        </div>
+                    </div>
+                    <div class="item flex-view">
+                        <div class="label">年龄</div>
+                        <div class="right-box">
+                            <input type="text" id="age" placeholder="请输入您的年龄" maxlength="10" class="input-dom">
+                        </div>
+                    </div>
+                    <div class="item flex-view">
+                        <div class="label">地区</div>
+                        <div class="right-box">
+                            <input type="text" id="area" placeholder="请输入您的地区,具体到区(县)" maxlength="100" class="input-dom">
+                        </div>
+                    </div>
+                    <div class="item flex-view">
+                        <div class="label">手机号</div>
+                        <div class="right-box">
+                                <input type="text" id="phone" placeholder="请输入手机号" maxlength="11" class="input-dom">
+                        </div>
+                    </div>
+                    <div class="item flex-view">
+                        <div class="label">验证码</div>
+                        <div class="right-box">
+                            <input type="text" id="captcha" placeholder="请输入验证码" maxlength="6" class="captcha-box">
+                            <button id="captchaBtn" class="captcha-btn" onclick="startCountdown()">获取验证码</button>
+                        </div>
+                    </div>
+                    <div class="item flex-view">
+                        <div class="label">个人简介</div>
+                        <div class="right-box">
+                                <input type="text" id="briefIntroduction" placeholder="请输入简介" maxlength="200"
+                                       class="intro">
+                            </th:block>
+                            <p class="tip">限制200字以内</p>
+                        </div>
+                    </div>
+                    <button class="save" onclick="submitTutorInfo()">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script th:src="@{/jquery.min.js}"></script>
+<script th:src="@{/plugins/sweetalert/sweetalert.min.js}"></script>
+<script th:src="@{/plugins/ajaxupload/ajaxupload.js}"></script>
+<script th:src="@{/js/headerConf.js}"></script>
+<script th:src="@{/js/joinTutor.js}"></script>
+<script></script>
+</html>

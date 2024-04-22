@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="header::head-fragment('心愿单','wish')">
+    <meta charset="UTF-8">
+    <title>心愿单</title>
+</head>
+<body>
+<header th:replace="header::header-fragment"></header>
+<div class="w-content">
+    <div class="w-content-left">
+        <div th:replace="sider::sider-fragment('侧边栏')"></div>
+    </div>
+    <div class="w-content-right">
+        <div class="content-list">
+            <div class="list-title">心愿单</div>
+            <div class="wish-table">
+                <th:block th:unless="${#lists.isEmpty(pageResult.list)}">
+                    <th:block th:each="item : ${pageResult.list}">
+                        <div class="wish-item">
+                            <div class="item-left">
+                            <div class="item-pic">
+                                <img th:src="${item.tutorPhoto}" class="pic">
+                            </div>
+                            </div>
+                            <div class="item-right">
+                            <div class="item-name" th:text="${item.tutorName}"></div>
+                            <div class="item-sub" th:text="${item.subName}"></div>
+                                <div class="item-price" th:text="${item.priceLesson} + '元/课时'"></div>
+                            </div>
+                            <a class="info" th:href="'/detail?subId='+ ${item.tutorSubId}">查看</a>
+                            <span class="divisionline">|</span>
+                            <span class="info" th:onclick="'deleteItem('+${item.tutorSubId}+')'">删除</span>
+                        </div>
+                    </th:block>
+                </th:block>
+            </div>
+            <div class="page-selector">
+                <th:block th:if="${pageResult.currentPage-2 >=1}"><a
+                        class="numbers"
+                        th:href="@{'/wish?page=' + ${pageResult.currentPage-2}}"
+                        th:text="${pageResult.currentPage -2}">1</a>
+                </th:block>
+                <th:block th:if="${pageResult.currentPage-1 >=1}"><a
+                        class="numbers"
+                        th:href="@{'/wish?page='  + ${pageResult.currentPage-1}}"
+                        th:text="${pageResult.currentPage -1}">1</a>
+                </th:block>
+                <a href="##" class="numbers current" th:text="${pageResult.currentPage}">1</a>
+                <th:block th:if="${pageResult.currentPage+1<=pageResult.totalPage}"><a
+                        class="numbers"
+                        th:href="@{'/wish?page=' + ${pageResult.currentPage+1}}"
+                        th:text="${pageResult.currentPage +1}">1</a></th:block>
+                <th:block th:if="${pageResult.currentPage+2<=pageResult.totalPage}"><a
+                        class="numbers"
+                        th:href="@{'/wish?page=' + ${pageResult.currentPage+2}}"
+                        th:text="${pageResult.currentPage +2}">1</a></th:block>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script th:src="@{/jquery.min.js}"></script>
+<script th:src="@{/plugins/sweetalert/sweetalert.min.js}"></script>
+<script th:src="@{/js/headerConf.js}"></script>
+<script>
+    function deleteItem(itemId) {
+    swal({
+        title: "注意！",
+        text: "确定要删除本条心愿吗?",
+        buttons: true,
+        dangerMode: true,
+    }).then((flag) => {
+            if (flag) {
+                $.ajax({
+                    type: "POST",
+                    url: "deleteWishItem",
+                    data: { id: itemId },
+                    success: function(data) {
+                        if(data.code == 0){
+                            window.location.reload();
+                        }
+                    },
+                    error: function() {
+                        alert(data.msg);
+                    }
+                });
+            }
+        }
+    )
+    ;
+}
+</script>
+</html>

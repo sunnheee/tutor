@@ -1,0 +1,110 @@
+body {
+    width: 1920px;
+    height: 1080px;
+}
+
+.w-content {
+    display: flex;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+.w-content-left {
+    float: left;
+    width: 20%;
+    padding-right: 5%;
+}
+
+.w-content-right {
+    flex: 1;
+}
+/*.content-list {*/
+/*    height: 930px;*/
+/*}*/
+.list-title {
+    border-bottom-color: rgb(206, 220, 228);
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    margin-bottom: 8px;
+    font-size: 20px;
+    color: black;
+    font-weight: 700;
+}
+
+.wish-item {
+    display: flex;
+    width: 700px;
+    background-color: rgb(246, 249, 251);
+    margin-right: 30px;
+    margin-top: 10px;
+}
+.item-left {
+    width: 220px;
+}
+.item-right{
+    width: 380px;
+}
+.info{
+    flex: 1;
+    text-align: center;
+    color: #2476f7;
+    margin-top: 60px;
+    width: 47px;
+    height: 20px;
+    text-decoration: none;
+    cursor: pointer;
+}
+.info:hover {
+    color: gray; /* 设置鼠标悬停时的颜色为灰色 */
+}
+.divisionline {
+    margin-top: 60px;
+}
+.pic {
+    width: 220px;
+    height: 150px;
+    object-fit: scale-down;
+}
+.item-name {
+    font-size: 25px;
+    color: #b6cbf1;
+}
+.item-sub{
+    color: #b6cbf1;
+    font-size: 20px;
+    margin-top: 15px;
+}
+.item-price {
+    color: #f17c86;
+    font-size: 23px;
+    margin-top: 20px;
+}
+
+.page-selector {
+    height: 30px;
+    padding: 15px 0;
+    text-align: center;
+}
+.page-selector .numbers {
+    display: inline-block;
+    *zoom: 1;
+    *display: inline;
+    width: 48px;
+    height: 24px;
+    padding: 3px 0;
+    margin: 0 7px;
+    font-size: 18px;
+    font-weight: 200;
+    line-height: 24px;
+    color: #b0b0b0;
+}
+
+.page-selector a.numbers {
+    -webkit-transition: all .2s linear;
+    transition: all .2s linear
+}
+
+.page-selector a.numbers:hover {
+    background: #b0b0b0;
+    color: #fff
+}

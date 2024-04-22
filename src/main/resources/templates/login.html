@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>登陆</title>
+    <link rel="stylesheet" th:href="@{style/login.css}">
+</head>
+<body>
+<div class="box">
+    <div class="left">
+        <img th:src="'images/loginBG.jpg'" alt="">
+    </div>
+    <div class="right">
+        <h1>登陆账号</h1>
+        <input type="text" class="inputItem" placeholder="请输入您的手机号" id="phone" name="phone" maxlength=11>
+        <input type="password" class="inputItem" placeholder="请输入密码" id="password" name="password" maxlength=20>
+        <input type="text" class="inputItemCapt" placeholder="请输入验证码" id="captcha" name="captcha" maxlength=4>
+        <img class="verify-code-button" alt="单击图片刷新" th:src="@{/captcha}"
+             onclick="this.src='/captcha?d='+new Date()*1" style="width: 95px;height: 55px;">
+        <button class="btn" onclick="login()">登陆</button>
+    </div>
+</div>
+</body>
+<script th:src="@{/jquery.min.js}"></script>
+<script th:src="@{/plugins/sweetalert/sweetalert.min.js}"></script>
+<script th:src="@{/js/login.js}"></script>
+</html>
